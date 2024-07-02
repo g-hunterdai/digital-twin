@@ -1,5 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "./style.css";
+import LeftChartComponent from "./components/LeftChartComponent";
+import LogoComponent from "./components/LogoComponent";
+import RightChartComponent from "./components/RightChartComponent";
 
 function App() {
   return (
@@ -18,6 +23,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <LogoComponent />
+      <LeftChartComponent />
+      <RightChartComponent />
     </div>
   );
 }

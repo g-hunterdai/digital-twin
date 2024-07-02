@@ -1,0 +1,225 @@
+hr {
+  width: 100%;
+}
+
+#logo {
+  width: 300px;
+  top: 0;
+  left: 20px;
+  height: 98px;
+}
+
+#logo p {
+  color: var(---, #ccc);
+  text-align: center;
+  /* font-family: "Univia Pro"; */
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+.btn-area {
+  display: flex;
+  width: 100%;
+  gap: 26px;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  height: 32px;
+  padding: 6px 20px 6px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1.5px solid #b3b3b3;
+  flex-shrink: 0;
+  color: #b3b3b3;
+}
+
+#left-panel {
+  width: 300px;
+  left: 20px;
+  top: 138px;
+}
+
+#right-panel {
+  width: 531px;
+  top: 80px;
+  right: 20px;
+}
+
+#right-panel .col-box {
+  display: flex;
+  gap: 18px;
+}
+
+#right-panel .cell-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#right-panel .cell-box .cell-item {
+  flex: 0 0 20%;
+  padding: 10px 12px;
+  border: 1px solid #fbfbf9;
+  text-align: left;
+}
+
+#right-panel .cell-box .cell-item span {
+  color: var(---, #ccc);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+#right-panel .cell-box .cell-item .data-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+#right-panel .col-box .progress-item {
+  display: flex;
+  flex: 1;
+  border: 1px solid rgba(251, 251, 249, 0.4);
+  flex-direction: column;
+  padding: 8px;
+}
+
+.progress-item hr {
+  margin: 0 0 8px 0;
+}
+
+.progress-item span {
+  color: var(---, #ccc);
+  font-family: "Univia Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  padding: 0 4px;
+}
+
+.panel-box {
+  background-color: #07111d;
+  /* height: 686px; */
+  padding: 16px;
+  color: #cccccc;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  position: absolute;
+}
+
+.chart-box {
+  border: 1px #666666 solid;
+  height: var(50% - 8px);
+  /* min-height: 300px; */
+  padding: 12px 16px;
+}
+
+.chart-box .vertical-box {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+#right-panel .chart-box {
+  display: flex;
+  flex-direction: row;
+}
+
+#right-panel .chart-box .data-area {
+  flex-direction: column;
+}
+
+.chart-box .data-area {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+
+.progress {
+  width: 100%;
+  display: flex;
+  margin: 12px 0;
+}
+.progress div {
+  height: 4px;
+}
+.progress div:nth-child(1) {
+  flex: 1;
+  background-color: #fff;
+}
+
+.progress div:nth-child(2) {
+  flex: 3;
+  background-color: #4dbefe;
+}
+
+.chart-box .data-area .data-box:nth-child(1) {
+  border-right: 1px #cccccc solid;
+}
+
+.chart-box .data-area .data-box {
+  flex: 1;
+  padding: 0 12px;
+}
+
+.col-box .progress-item .data-area .title,
+.chart-box .vertical-box .data-area .title,
+.chart-box .data-area .data-box .title {
+  color: #ccc;
+
+  /* 中文/Detail/regular */
+  font-family: "Noto Sans TC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  text-align: left;
+}
+
+.col-box .progress-item .data-area .value,
+.chart-box .vertical-box .data-area .value,
+.chart-box .data-area .data-box .value {
+  color: var#fff;
+  text-align: right;
+  /* font-family: "Univia Pro"; */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.col-box .progress-item .data-area .value span.unit,
+.chart-box .vertical-box .data-area .value span.unit,
+.chart-box .data-area .data-box .value span.unit {
+  color: #ccc;
+  /* 中文/Detail/regular */
+  font-family: "Noto Sans TC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.col-box .progress-item .data-area .title.tar {
+  text-align: right !important;
+}
+
+.col-box .progress-item .data-area .value.blue {
+  color: #4dbefe;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.col-box .progress-item .data-area .value.blue .unit {
+  color: #4dbefe;
+}
