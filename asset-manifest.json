@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/g-hunterdai.github.io/digital-twin/static/css/main.58721e3b.css",
-    "main.js": "/g-hunterdai.github.io/digital-twin/static/js/main.25b9c19f.js",
-    "index.html": "/g-hunterdai.github.io/digital-twin/index.html",
-    "main.58721e3b.css.map": "/g-hunterdai.github.io/digital-twin/static/css/main.58721e3b.css.map",
-    "main.25b9c19f.js.map": "/g-hunterdai.github.io/digital-twin/static/js/main.25b9c19f.js.map"
+    "main.css": "/digital-twin/static/css/main.58721e3b.css",
+    "main.js": "/digital-twin/static/js/main.25b9c19f.js",
+    "index.html": "/digital-twin/index.html",
+    "main.58721e3b.css.map": "/digital-twin/static/css/main.58721e3b.css.map",
+    "main.25b9c19f.js.map": "/digital-twin/static/js/main.25b9c19f.js.map"
   },
   "entrypoints": [
     "static/css/main.58721e3b.css",
