@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import * as TWEEN from "three/examples/jsm/libs/tween.module.js";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
 
 import {
@@ -20,6 +20,13 @@ const Canva3D = () => {
   useEffect(() => {
     // 創建場景
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#252424");
+
+    // Texture loader
+    // const backgroundLoader = new THREE.TextureLoader();
+    // backgroundLoader.load("textures/data.jpg", function (texture) {
+    //   scene.background = texture;
+    // });
 
     // 創建相機
     const camera = new THREE.PerspectiveCamera(
@@ -30,9 +37,9 @@ const Canva3D = () => {
     );
 
     // 設置相機位置
-    camera.position.z = 1000;
+    camera.position.z = 250;
     camera.position.y = 500;
-    camera.position.x = 0;
+    camera.position.x = 250;
     camera.lookAt(0, 0, 0);
 
     // 添加世界座標輔助器
@@ -80,29 +87,27 @@ const Canva3D = () => {
     const texture = textureLoader.load("textures/map.png"); // 替换为你的地图照片路径
 
     // 创建平面几何体
-    const planeGeometry = new THREE.PlaneGeometry(2500, 2500); // 設置平面大小
-    const planeMaterial = new THREE.MeshStandardMaterial({ map: texture });
+    const planeGeometry = new THREE.PlaneGeometry(1800, 1800); // 設置平面大小
+    const planeMaterial = new THREE.MeshStandardMaterial({
+      map: texture,
+      color: 0x888888, // 调整颜色的亮度，使其变暗
+    });
     const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
     planeMesh.rotation.x = -Math.PI / 2; // 將平面旋轉至底部
     planeMesh.position.y = -1; // 設置平面的Y軸位置
     scene.add(planeMesh);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1); // color, intensity
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2); // color, intensity
     scene.add(ambientLight);
 
-    // 添加FBX模型
-    const fbxLoader = new FBXLoader();
-    fbxLoader.load(
-      //   "fbx/101/3DModel_Taipei101.fbx",
-      "fbx/office/office.fbx",
-      (object) => {
-        console.log(object);
+    // 添加GLTF檔案
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load(
+      "gltf/101_gltf/1586297.gltf",
+      (gltf) => {
+        const model = gltf.scene;
 
-        // 縮小模型
-        const scale = 0.1; // 調整這個值來控制縮小比例
-        object.scale.set(scale, scale, scale);
-
-        // Add 2D Label to the model
+        // 創建HTML內容
         const labelDiv = document.createElement("div");
         labelDiv.innerHTML = `
             <div>
@@ -140,24 +145,13 @@ const Canva3D = () => {
           pointerEvents: "none",
         });
 
+        // 创建CSS2DObject并设置位置
         const modelLabel = new CSS2DObject(labelDiv);
-        modelLabel.position.set(-5000, 3000, 0); // 根據模型位置調整
-        modelLabel.scale.set(1, 1, 1); // 初始比例為1
-        object.add(modelLabel);
+        modelLabel.position.set(-200, 200, 0); // 根据模型位置调整
+        model.add(modelLabel); // 将CSS2DObject添加到模型的场景图根对象或者组件
 
-        const animate = () => {
-          controls.update();
-          renderer.render(scene, camera);
-          labelRenderer.render(scene, camera);
-          css3DRenderer.render(scene, camera);
-          TWEEN.update();
-          requestAnimationFrame(animate);
-
-          updateCSS2DObjectScale(camera, object, modelLabel);
-        };
-        animate();
-
-        scene.add(object);
+        // 将模型添加到场景中
+        scene.add(model);
       },
       (xhr) => {
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
@@ -168,41 +162,22 @@ const Canva3D = () => {
     );
 
     // 添加環境
-    const rgbeLoader = new RGBELoader();
-    rgbeLoader.load(
-      "textures/sky/sky.hdr",
-      (texture) => {
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.background = texture;
-        scene.environment = texture;
-      },
-      undefined,
-      (error) => {
-        console.error("An error occurred loading the RGBE texture:", error);
-      }
-    );
+    // const rgbeLoader = new RGBELoader();
+    // rgbeLoader.load(
+    //   "textures/sky/sky.hdr",
+    //   (texture) => {
+    //     texture.mapping = THREE.EquirectangularReflectionMapping;
+    //     scene.background = texture;
+    //     scene.environment = texture;
+    //   },
+    //   undefined,
+    //   (error) => {
+    //     console.error("An error occurred loading the RGBE texture:", error);
+    //   }
+    // );
 
     let lastTime = performance.now();
     let frameCount = 0;
-
-    // 更新CSS2DObject的比例
-    const updateCSS2DObjectScale = (camera, object, modelLabel) => {
-      const scale = calculateScale(camera, object.position);
-      modelLabel.scale.set(scale, scale, scale);
-    };
-
-    // 計算比例
-    const calculateScale = (camera, position) => {
-      const distance = camera.position.distanceTo(position);
-      const fov = camera.fov * (Math.PI / 180); // Convert fov to radians
-      const objectSizeAtDistance = 2 * Math.tan(fov / 2) * distance;
-
-      // Determine appropriate scale factor based on desired size in the viewport
-      const desiredObjectSize = 50; // Example: desired object size in viewport
-      const scaleFactor = desiredObjectSize / objectSizeAtDistance;
-
-      return scaleFactor;
-    };
 
     // 渲染函數
     const animate = () => {
