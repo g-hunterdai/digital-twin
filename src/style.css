@@ -1,0 +1,427 @@
+body {
+  margin: 0;
+}
+p,
+span,
+div {
+  font-family: sans-serif;
+}
+hr {
+  width: 100%;
+}
+
+#canvas2d {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+#header {
+  top: 16px;
+  right: 20px;
+  width: calc(100% - 432px);
+  height: 32px;
+  padding: 4px 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+#header .btn-area {
+  flex: 3;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+#header .info-area {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+#logo {
+  width: 300px;
+  top: 0;
+  left: 20px;
+  height: 98px;
+}
+
+#logo p {
+  color: var(---, #ccc);
+  text-align: center;
+  /* font-family: "Univia Pro"; */
+  font-size: 48px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+.btn-area {
+  display: flex;
+  width: 100%;
+  gap: 26px;
+  justify-content: center;
+}
+
+.btn {
+  display: inline-flex;
+  height: 32px;
+  padding: 6px 20px 6px 18px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 1.5px solid #b3b3b3;
+  flex-shrink: 0;
+  color: #b3b3b3;
+}
+
+.btn:hover,
+.tab:hover {
+  cursor: pointer;
+  background: rgba(251, 251, 249, 0.18);
+}
+
+#left-panel {
+  width: 300px;
+  left: 20px;
+  top: 138px;
+  height: 654px;
+}
+
+#right-panel {
+  width: 499px;
+  top: 80px;
+  right: 20px;
+  z-index: 99;
+}
+
+#bottom-table-panel {
+  width: calc(100% - 607px);
+  height: 227px;
+  left: 20px;
+  top: 832px;
+}
+
+#right-panel .tab-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#right-panel .tab-area .tab-box {
+  display: flex;
+  width: 80%;
+}
+
+#right-panel .tab-area .tab-box .tab {
+  flex: 1;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #808080;
+  text-align: center;
+}
+
+#right-panel .tab-area .tab-box .tab.active {
+  color: #cccccc;
+  border-bottom: 2px solid #fbfbf9;
+}
+
+#right-panel .col-box {
+  display: flex;
+  gap: 18px;
+}
+
+#right-panel .cell-box {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#right-panel .cell-box .cell-item:hover {
+  cursor: pointer;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 72, 14, 0.15) 15.1%,
+    rgba(255, 72, 14, 0.7) 100%
+  );
+}
+
+#right-panel .cell-box .cell-item {
+  flex: 0 0 calc(25% - 26px);
+  padding: 10px 12px;
+  border: 1px solid #fbfbf9;
+  text-align: left;
+}
+
+#right-panel .cell-box .cell-item span {
+  color: var(---, #ccc);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+#right-panel .cell-box .cell-item .data-area {
+  display: flex;
+  justify-content: space-between;
+}
+
+#right-panel .col-box .progress-item {
+  display: flex;
+  flex: 1;
+  border: 1px solid rgba(251, 251, 249, 0.4);
+  flex-direction: column;
+  padding: 8px;
+}
+
+.progress-item hr {
+  margin: 0 0 8px 0;
+}
+
+.progress-item span {
+  color: var(---, #ccc);
+  font-family: "Univia Pro";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  padding: 0 4px;
+}
+
+.panel-box {
+  background-color: #07111d;
+  /* height: 686px; */
+  padding: 16px;
+  color: #cccccc;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  position: absolute;
+  /* background-image: url('/public/layout/regular\ dashboard-\ A.svg'); */
+}
+
+.chart-box {
+  border: 1px #666666 solid;
+  height: calc(100% - 50px);
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chart-box .chart {
+  text-align: center;
+  height: calc((100% - 66px) / 2);
+}
+
+.chart-box .vertical-box {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+#right-panel .chart-box {
+  display: flex;
+  flex-direction: row;
+}
+
+#right-panel .chart-box .data-area {
+  flex-direction: column;
+}
+
+#left-panel .unit-box {
+  height: calc(50% - 8px);
+}
+
+#left-panel .unit-box .title.row {
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.chart-box .data-area {
+  display: flex;
+  width: 100%;
+  flex: 1;
+}
+
+.progress {
+  width: 100%;
+  display: flex;
+  margin: 12px 0;
+}
+.progress div {
+  height: 4px;
+}
+.progress div:nth-child(1) {
+  flex: 1;
+  background-color: #fff;
+}
+
+.progress div:nth-child(2) {
+  flex: 3;
+  background-color: #4dbefe;
+}
+
+.chart-box .data-area .data-box:nth-child(1) {
+  border-right: 1px #cccccc solid;
+}
+
+.chart-box .data-area .data-box {
+  flex: 1;
+  padding: 0 12px;
+}
+
+.col-box .progress-item .data-area .title,
+.chart-box .vertical-box .data-area .title,
+.chart-box .data-area .data-box .title {
+  color: #ccc;
+
+  /* 中文/Detail/regular */
+  font-family: "Noto Sans TC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+  text-align: left;
+}
+
+.col-box .progress-item .data-area .value,
+.chart-box .vertical-box .data-area .value,
+.chart-box .data-area .data-box .value {
+  color: var#fff;
+  text-align: right;
+  /* font-family: "Univia Pro"; */
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.col-box .progress-item .data-area .value span.unit,
+.chart-box .vertical-box .data-area .value span.unit,
+.chart-box .data-area .data-box .value span.unit {
+  color: #ccc;
+  /* 中文/Detail/regular */
+  font-family: "Noto Sans TC";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 142.857% */
+}
+
+.col-box .progress-item .data-area .title.tar {
+  text-align: right !important;
+}
+
+.col-box .progress-item .data-area .value.blue {
+  color: #4dbefe;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.col-box .progress-item .data-area .value.blue .unit {
+  color: #4dbefe;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+#bottom-table-panel .row.ais {
+  gap: 16px;
+}
+
+#bottom-table-panel .label-box {
+  gap: 24px;
+}
+
+#bottom-table-panel .label-box.row .row {
+  gap: 8px;
+}
+
+#bottom-table-panel .label-box .row .label {
+  width: 24px;
+  height: 16px;
+  border-radius: 8px;
+}
+
+#bottom-table-panel .label-box .row:nth-child(1) .label {
+  background-color: #fb7887;
+}
+
+#bottom-table-panel .label-box .row:nth-child(2) .label {
+  background-color: #e28d58;
+}
+
+#bottom-table-panel .label-box .row:nth-child(3) .label {
+  background-color: #e2d258;
+}
+
+#bottom-table-panel .label-box .row:nth-child(4) .label {
+  background-color: #79e8a4;
+}
+.row.jcsb {
+  justify-content: space-between;
+}
+
+.row.ais {
+  align-items: start;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+}
+
+thead {
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.critical {
+  background-color: #e74c3c;
+}
+
+.major {
+  background-color: #e67e22;
+}
+
+.minor {
+  background-color: #f1c40f;
+}
+
+.warning {
+  background-color: #2ecc71;
+}

@@ -1,13 +1,30 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.canvaContainer {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.labelContainer {
+  background-color: "rgba(3, 11, 17, 0.6)";
+  text-align: center;
+  pointer-events: none;
+  padding: 5px;
+}
+
+.labelContainer h3 {
+  color: "#FE8C23";
+  font-family: Univia Pro;
+  font-size: 32px;
+  font-weight: 350;
+}
+
+.labelContainer h3 {
+  color: "#FE8C23";
+  font-family: Univia Pro;
+  font-size: 32px;
+  font-weight: 350;
+}
+
+.labelData {
+  color: "#ffffff";
 }
