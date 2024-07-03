@@ -20,6 +20,13 @@ const Canva3D = () => {
   useEffect(() => {
     // 創建場景
     const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#252424");
+
+    // Texture loader
+    // const backgroundLoader = new THREE.TextureLoader();
+    // backgroundLoader.load("textures/data.jpg", function (texture) {
+    //   scene.background = texture;
+    // });
 
     // 創建相機
     const camera = new THREE.PerspectiveCamera(
@@ -81,13 +88,16 @@ const Canva3D = () => {
 
     // 创建平面几何体
     const planeGeometry = new THREE.PlaneGeometry(1800, 1800); // 設置平面大小
-    const planeMaterial = new THREE.MeshStandardMaterial({ map: texture });
+    const planeMaterial = new THREE.MeshStandardMaterial({
+      map: texture,
+      color: 0x888888, // 调整颜色的亮度，使其变暗
+    });
     const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
     planeMesh.rotation.x = -Math.PI / 2; // 將平面旋轉至底部
     planeMesh.position.y = -1; // 設置平面的Y軸位置
     scene.add(planeMesh);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1); // color, intensity
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2); // color, intensity
     scene.add(ambientLight);
 
     // 添加GLTF檔案
@@ -152,19 +162,19 @@ const Canva3D = () => {
     );
 
     // 添加環境
-    const rgbeLoader = new RGBELoader();
-    rgbeLoader.load(
-      "textures/sky/sky.hdr",
-      (texture) => {
-        texture.mapping = THREE.EquirectangularReflectionMapping;
-        scene.background = texture;
-        scene.environment = texture;
-      },
-      undefined,
-      (error) => {
-        console.error("An error occurred loading the RGBE texture:", error);
-      }
-    );
+    // const rgbeLoader = new RGBELoader();
+    // rgbeLoader.load(
+    //   "textures/sky/sky.hdr",
+    //   (texture) => {
+    //     texture.mapping = THREE.EquirectangularReflectionMapping;
+    //     scene.background = texture;
+    //     scene.environment = texture;
+    //   },
+    //   undefined,
+    //   (error) => {
+    //     console.error("An error occurred loading the RGBE texture:", error);
+    //   }
+    // );
 
     let lastTime = performance.now();
     let frameCount = 0;
