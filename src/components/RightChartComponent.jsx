@@ -1,8 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AreaDoubleLineChart from "./AreaDoubleLineChart";
 import AnimatedNumbers from "react-animated-numbers";
 const RightChartComponent = (props) => {
   const { pue, kwh } = props;
+  const [highestPue, setHighestPue] = useState(1.44);
+  const [lowestPue, setLowestPue] = useState(1.38);
+  const [highestKwh, setHighestKwh] = useState(699);
+  const [lowestKwh, setLowestKwh] = useState(607);
+  const progressData = [
+    {
+      id: "HQ14F-MX480",
+      in: 4382,
+      out: 5472,
+    },
+    {
+      id: "HQ14F-MX960",
+      in: 4772,
+      out: 3200,
+    },
+    {
+      id: "TG3F-MX480",
+      in: 320,
+      out: 281,
+    },
+  ];
+
+  useEffect(() => {
+    setInterval(() => {
+      if (highestPue < 2.6) {
+        setHighestPue((state) => Math.random() * (2.6 - 1.44) + 1.44);
+      } else {
+        setHighestPue(1.44);
+      }
+
+      if (lowestPue < 2.3) {
+        setLowestPue((state) => Math.random() * (2.3 - 1.38) + 1.38);
+      } else {
+        setLowestPue(1.38);
+      }
+      if (highestKwh < 800) {
+        setHighestKwh((state) => Math.ceil(Math.random() * (800 - 699) + 699));
+      } else {
+        setHighestKwh(699);
+      }
+      if (lowestKwh < 750) {
+        setLowestKwh((state) => Math.ceil(Math.random() * (750 - 607) + 607));
+      } else {
+        setLowestKwh(607);
+      }
+    }, 10000);
+  }, []);
+
   const cellData = [
     {
       title: "PDU",
@@ -40,23 +88,6 @@ const RightChartComponent = (props) => {
       value: "22/50",
     },
   ];
-  const progressData = [
-    {
-      id: "HQ14F-MX480",
-      in: 4382,
-      out: 5472,
-    },
-    {
-      id: "HQ14F-MX960",
-      in: 4772,
-      out: 3200,
-    },
-    {
-      id: "TG3F-MX480",
-      in: 320,
-      out: 281,
-    },
-  ];
 
   const ProgressComponent = (data) => {
     return (
@@ -66,6 +97,14 @@ const RightChartComponent = (props) => {
         <div className="data-area">
           <div className="title">IN-Total</div>
           <div className="value">
+            {/* <AnimatedNumbers
+              includeComma
+              transitions={(index) => ({
+                type: "spring",
+                duration: index + 0.3,
+              })}
+              animateToNumber=
+              /> */}
             {data.in}
             <span className="unit">Mbps </span>
           </div>
@@ -77,6 +116,19 @@ const RightChartComponent = (props) => {
         <div className="data-area">
           <div className="title tar">IN-Total</div>
           <div className="value blue">
+            {/* <AnimatedNumbers
+              includeComma
+            //   className="value blue"
+              transitions={(index) => ({
+                type: "spring",
+                duration: index + 0.3,
+              })}
+              fontStyle={{
+                color: "#4dbefe",
+              }}
+              animateToNumber=
+              
+              /> */}
             {data.out}
             <span className="unit">Mbps </span>
           </div>
@@ -107,6 +159,10 @@ const RightChartComponent = (props) => {
           <div className="tab">國分</div>
         </div>
       </div>
+      <div className="title row">
+        <img src="./layout/Union.svg" alt="" />
+        <span>PUE</span>
+      </div>
       <div className="chart-box">
         <div className="vertical-box">
           <div className="data-area">
@@ -124,14 +180,36 @@ const RightChartComponent = (props) => {
           </div>
           <div className="data-area">
             <div className="title">Highest</div>
-            <div className="value">1.44</div>
+            <div className="value">
+              <AnimatedNumbers
+                includeComma
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={highestPue}
+              />
+            </div>
           </div>
           <div className="data-area">
             <div className="title">Lowest</div>
-            <div className="value">1.38</div>
+            <div className="value">
+              <AnimatedNumbers
+                includeComma
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={lowestPue}
+              />
+            </div>
           </div>
         </div>
         <AreaDoubleLineChart />
+      </div>
+      <div className="title row">
+        <img src="./layout/Union.svg" alt="" />
+        <span>KWH</span>
       </div>
       <div className="chart-box">
         <div className="vertical-box">
@@ -150,11 +228,29 @@ const RightChartComponent = (props) => {
           </div>
           <div className="data-area">
             <div className="title">Highest</div>
-            <div className="value">699</div>
+            <div className="value">
+              <AnimatedNumbers
+                includeComma
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={highestKwh}
+              />
+            </div>
           </div>
           <div className="data-area">
             <div className="title">Lowest</div>
-            <div className="value">607</div>
+            <div className="value">
+              <AnimatedNumbers
+                includeComma
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={lowestKwh}
+              />
+            </div>
           </div>
         </div>
         <AreaDoubleLineChart />
