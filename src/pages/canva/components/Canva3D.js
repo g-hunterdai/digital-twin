@@ -399,8 +399,7 @@ const Canva3D = () => {
         });
 
         const modelLabel = new CSS2DObject(labelDiv);
-        modelLabel.position.set(-1000, 1000, 0); // 根據模型位置調整
-        modelLabel.center.set(0, 1);
+        modelLabel.position.set(-5000, 3000, 0); // 根據模型位置調整
         modelLabel.scale.set(1, 1, 1); // 初始比例為1
         object.add(modelLabel);
 
