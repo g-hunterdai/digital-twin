@@ -99,6 +99,7 @@ hr {
   top: 80px;
   right: 20px;
   z-index: 99;
+  height: 979px;
 }
 
 #bottom-table-panel {
@@ -204,7 +205,7 @@ hr {
   padding: 16px;
   color: #cccccc;
   display: flex;
-  gap: 16px;
+  /* gap: 16px; */
   flex-direction: column;
   position: absolute;
   /* background-image: url('/public/layout/regular\ dashboard-\ A.svg'); */
@@ -241,6 +242,16 @@ hr {
 
 #left-panel .unit-box {
   height: calc(50% - 8px);
+}
+
+#right-panel .col-box,
+#right-panel .cell-box {
+  margin-top: 16px;
+}
+
+#right-panel .title.row {
+  gap: 8px;
+  margin: 12px 0 4px 0;
 }
 
 #left-panel .unit-box .title.row {
