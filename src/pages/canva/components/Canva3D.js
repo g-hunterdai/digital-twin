@@ -111,8 +111,8 @@ const Canva3D = () => {
         const labelDiv = document.createElement("div");
         labelDiv.innerHTML = `
             <div>
-                <h3 style="font-size: 32px; font-weight: 350; margin: 0px">Taipei 101</h3>
-                <div style="display: flex; justify-content: center; color: #ffffff; border: 2px #fe8c23 solid">
+                <h3 style="font-size: 32px; font-weight: 350; margin: 0px 0px 8px 0px">Taipei 101</h3>
+                <div style="display: flex; justify-content: center; color: #ffffff; border-width: 1px 4px; border-color: #fe8c23; border-style: solid;">
                     <div style="margin: 0px 8px;">
                         <div style="margin: 8px 0px;">
                             <div style="color: #cccccc; font-size: 16px; font-weight: 400">PUE</div>
