@@ -6,7 +6,10 @@ const LeftChartComponent = () => {
   return (
     <div id="left-panel" className="panel-box">
       <div className="unit-box">
-        <h3>伺服器</h3>
+        <div className="title row">
+          <img src="./layout/Union.svg" alt="" />
+          <span>伺服器</span>
+        </div>
         <div className="chart-box">
           <AreaSingleLineChart type={"CPU"} />
           <AreaSingleLineChart type={"Memory"} />
@@ -29,7 +32,10 @@ const LeftChartComponent = () => {
         </div>
       </div>
       <div className="unit-box">
-        <h3>資料庫</h3>
+        <div className="title row">
+          <img src="./layout/Union.svg" alt="" />
+          <span>資料庫</span>
+        </div>
         <div className="chart-box">
           <AreaDoubleLineChart chartType={"monotone"} />
           <AreaDoubleLineChart chartType={"monotone"} />

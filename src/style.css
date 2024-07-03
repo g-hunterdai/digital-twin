@@ -1,5 +1,45 @@
+body {
+  margin: 0;
+}
+p,
+span,
+div {
+  font-family: sans-serif;
+}
 hr {
   width: 100%;
+}
+
+#canvas2d {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+#header {
+  top: 16px;
+  right: 20px;
+  width: calc(100% - 432px);
+  height: 32px;
+  padding: 4px 16px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+#header .btn-area {
+  flex: 3;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+#header .info-area {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
 }
 
 #logo {
@@ -41,16 +81,58 @@ hr {
   color: #b3b3b3;
 }
 
+.btn:hover,
+.tab:hover {
+  cursor: pointer;
+  background: rgba(251, 251, 249, 0.18);
+}
+
 #left-panel {
   width: 300px;
   left: 20px;
   top: 138px;
+  height: 654px;
 }
 
 #right-panel {
-  width: 531px;
+  width: 499px;
   top: 80px;
   right: 20px;
+  z-index: 99;
+}
+
+#bottom-table-panel {
+  width: calc(100% - 607px);
+  height: 227px;
+  left: 20px;
+  top: 832px;
+}
+
+#right-panel .tab-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#right-panel .tab-area .tab-box {
+  display: flex;
+  width: 80%;
+}
+
+#right-panel .tab-area .tab-box .tab {
+  flex: 1;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  color: #808080;
+  text-align: center;
+}
+
+#right-panel .tab-area .tab-box .tab.active {
+  color: #cccccc;
+  border-bottom: 2px solid #fbfbf9;
 }
 
 #right-panel .col-box {
@@ -63,8 +145,18 @@ hr {
   flex-wrap: wrap;
 }
 
+#right-panel .cell-box .cell-item:hover {
+  cursor: pointer;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 72, 14, 0.15) 15.1%,
+    rgba(255, 72, 14, 0.7) 100%
+  );
+}
+
 #right-panel .cell-box .cell-item {
-  flex: 0 0 20%;
+  flex: 0 0 calc(25% - 26px);
   padding: 10px 12px;
   border: 1px solid #fbfbf9;
   text-align: left;
@@ -115,13 +207,21 @@ hr {
   gap: 16px;
   flex-direction: column;
   position: absolute;
+  /* background-image: url('/public/layout/regular\ dashboard-\ A.svg'); */
 }
 
 .chart-box {
   border: 1px #666666 solid;
-  height: var(50% - 8px);
-  /* min-height: 300px; */
+  height: calc(100% - 50px);
   padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.chart-box .chart {
+  text-align: center;
+  height: calc((100% - 66px) / 2);
 }
 
 .chart-box .vertical-box {
@@ -137,6 +237,15 @@ hr {
 
 #right-panel .chart-box .data-area {
   flex-direction: column;
+}
+
+#left-panel .unit-box {
+  height: calc(50% - 8px);
+}
+
+#left-panel .unit-box .title.row {
+  gap: 8px;
+  margin-bottom: 4px;
 }
 
 .chart-box .data-area {
@@ -222,4 +331,97 @@ hr {
 
 .col-box .progress-item .data-area .value.blue .unit {
   color: #4dbefe;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+#bottom-table-panel .row.ais {
+  gap: 16px;
+}
+
+#bottom-table-panel .label-box {
+  gap: 24px;
+}
+
+#bottom-table-panel .label-box.row .row {
+  gap: 8px;
+}
+
+#bottom-table-panel .label-box .row .label {
+  width: 24px;
+  height: 16px;
+  border-radius: 8px;
+}
+
+#bottom-table-panel .label-box .row:nth-child(1) .label {
+  background-color: #fb7887;
+}
+
+#bottom-table-panel .label-box .row:nth-child(2) .label {
+  background-color: #e28d58;
+}
+
+#bottom-table-panel .label-box .row:nth-child(3) .label {
+  background-color: #e2d258;
+}
+
+#bottom-table-panel .label-box .row:nth-child(4) .label {
+  background-color: #79e8a4;
+}
+.row.jcsb {
+  justify-content: space-between;
+}
+
+.row.ais {
+  align-items: start;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 14px;
+}
+
+thead {
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #444;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.critical {
+  background-color: #e74c3c;
+}
+
+.major {
+  background-color: #e67e22;
+}
+
+.minor {
+  background-color: #f1c40f;
+}
+
+.warning {
+  background-color: #2ecc71;
 }
