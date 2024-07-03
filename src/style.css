@@ -41,12 +41,15 @@ hr {
   align-items: center;
   gap: 16px;
 }
-
 #logo {
   width: 300px;
   top: 0;
   left: 20px;
   height: 98px;
+}
+
+#logo .btn-area {
+  margin-top: 8px;
 }
 
 #logo p {
@@ -92,6 +95,7 @@ hr {
   left: 20px;
   top: 138px;
   height: 654px;
+  gap: 16px;
 }
 
 #right-panel {
