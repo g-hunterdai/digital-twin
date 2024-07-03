@@ -1,7 +1,8 @@
 import React from "react";
 import AreaDoubleLineChart from "./AreaDoubleLineChart";
-
-const RightChartComponent = () => {
+import AnimatedNumbers from "react-animated-numbers";
+const RightChartComponent = (props) => {
+  const { pue, kwh } = props;
   const cellData = [
     {
       title: "PDU",
@@ -39,15 +40,33 @@ const RightChartComponent = () => {
       value: "22/50",
     },
   ];
-  const ProgressComponent = () => {
+  const progressData = [
+    {
+      id: "HQ14F-MX480",
+      in: 4382,
+      out: 5472,
+    },
+    {
+      id: "HQ14F-MX960",
+      in: 4772,
+      out: 3200,
+    },
+    {
+      id: "TG3F-MX480",
+      in: 320,
+      out: 281,
+    },
+  ];
+
+  const ProgressComponent = (data) => {
     return (
       <div className="progress-item">
-        <span>HQ14F-MX480</span>
+        <span>{data.id}</span>
         <hr />
         <div className="data-area">
           <div className="title">IN-Total</div>
           <div className="value">
-            4,382
+            {data.in}
             <span className="unit">Mbps </span>
           </div>
         </div>
@@ -58,7 +77,7 @@ const RightChartComponent = () => {
         <div className="data-area">
           <div className="title tar">IN-Total</div>
           <div className="value blue">
-            4,382
+            {data.out}
             <span className="unit">Mbps </span>
           </div>
         </div>
@@ -80,12 +99,28 @@ const RightChartComponent = () => {
   };
   return (
     <div id="right-panel" className="panel-box">
-      <div className="tab-area"></div>
+      <div className="tab-area">
+        <img src="./layout/burger.svg" alt="" />
+        <div className="tab-box">
+          <div className="tab active">Digicentre</div>
+          <div className="tab">中和</div>
+          <div className="tab">國分</div>
+        </div>
+      </div>
       <div className="chart-box">
         <div className="vertical-box">
           <div className="data-area">
             <div className="title">Today PUE</div>
-            <div className="value">1.40</div>
+            <div className="value">
+              <AnimatedNumbers
+                includeComma
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={pue}
+              />
+            </div>
           </div>
           <div className="data-area">
             <div className="title">Highest</div>
@@ -102,7 +137,16 @@ const RightChartComponent = () => {
         <div className="vertical-box">
           <div className="data-area">
             <div className="title">Today KWH</div>
-            <div className="value">15,651</div>
+            <div className="value">
+              <AnimatedNumbers
+                includeComma
+                transitions={(index) => ({
+                  type: "spring",
+                  duration: index + 0.3,
+                })}
+                animateToNumber={kwh}
+              />
+            </div>
           </div>
           <div className="data-area">
             <div className="title">Highest</div>
@@ -116,9 +160,7 @@ const RightChartComponent = () => {
         <AreaDoubleLineChart />
       </div>
       <div className="col-box">
-        <ProgressComponent />
-        <ProgressComponent />
-        <ProgressComponent />
+        {progressData.map((data) => ProgressComponent(data))}
       </div>
       <div className="cell-box">
         {cellData.map((data) => CellComponent(data))}

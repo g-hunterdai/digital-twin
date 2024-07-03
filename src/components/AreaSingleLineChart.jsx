@@ -54,9 +54,9 @@ const AreaSingleLineChart = (props) => {
     },
   ];
   return (
-    <>
+    <div className="chart">
       <span>{type}</span>
-      <ResponsiveContainer width="100%" height="100%" minHeight={`100px`}>
+      <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           width={500}
           height={400}
@@ -89,7 +89,7 @@ const AreaSingleLineChart = (props) => {
           />
         </AreaChart>
       </ResponsiveContainer>
-    </>
+    </div>
   );
 };
 
