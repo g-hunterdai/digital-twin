@@ -70,7 +70,7 @@ const Canva3D = (props) => {
 
     const gltfLoader = new GLTFLoader();
     gltfLoader.load(
-      "gltf/101_gltf/1586297.gltf",
+      process.env.PUBLIC_URL + "/gltf/101_gltf/1586297.gltf",
       (gltf) => {
         const model = gltf.scene;
 
