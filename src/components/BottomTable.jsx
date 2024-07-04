@@ -24,68 +24,73 @@ const BottomTable = () => {
             </div>
           </div>
           <table>
-            <thead>
-              <tr>
-                <th>Level</th>
-                <th>System</th>
-                <th>Sub System</th>
-                <th>Asset Name</th>
-                <th>Building</th>
-                <th>Floor</th>
-                <th>Occur Time</th>
-                <th>Message</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <span class="dot critical"></span>Critical
-                </td>
-                <td>FMS</td>
-                <td>保全系統</td>
-                <td>通信室門2</td>
-                <td>中和機房</td>
-                <td>14F</td>
-                <td>2023-05-31 14:50:30</td>
-                <td>test 1</td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="dot major"></span>Major
-                </td>
-                <td>FMS</td>
-                <td>電力系統</td>
-                <td>電表1</td>
-                <td>中和機房</td>
-                <td>5F</td>
-                <td>2023-05-31 14:50:30</td>
-                <td>test 2</td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="dot minor"></span>Minor
-                </td>
-                <td>FRS</td>
-                <td>電力系統</td>
-                <td>電表2</td>
-                <td>中和機房</td>
-                <td>5F</td>
-                <td>2023-05-31 14:50:30</td>
-                <td>test 3</td>
-              </tr>
-              <tr>
-                <td>
-                  <span class="dot warning"></span>Warning
-                </td>
-                <td>FMS</td>
-                <td>電力系統</td>
-                <td>電表3</td>
-                <td>中和機房</td>
-                <td>5F</td>
-                <td>2023-05-31 14:50:30</td>
-                <td>test 4</td>
-              </tr>
-            </tbody>
+            <tr>
+              <td>
+                <div className="table-box">
+                  <table>
+                    <tr>
+                      <th>Level</th>
+                      <th>System</th>
+                      <th>Sub System</th>
+                      <th>Asset Name</th>
+                      <th>Building</th>
+                      <th>Floor</th>
+                      <th>Occur Time</th>
+                      <th>Message</th>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="dot critical"></span>Critical
+                      </td>
+                      <td>FMS</td>
+                      <td>保全系統</td>
+                      <td>通信室門2</td>
+                      <td>中和機房</td>
+                      <td>14F</td>
+                      <td>2023-05-31 14:50:30</td>
+                      <td>test 1</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="dot major"></span>Major
+                      </td>
+                      <td>FMS</td>
+                      <td>電力系統</td>
+                      <td>電表1</td>
+                      <td>中和機房</td>
+                      <td>5F</td>
+                      <td>2023-05-31 14:50:30</td>
+                      <td>test 2</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="dot minor"></span>Minor
+                      </td>
+                      <td>FRS</td>
+                      <td>電力系統</td>
+                      <td>電表2</td>
+                      <td>中和機房</td>
+                      <td>5F</td>
+                      <td>2023-05-31 14:50:30</td>
+                      <td>test 3</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="dot warning"></span>Warning
+                      </td>
+                      <td>FMS</td>
+                      <td>電力系統</td>
+                      <td>電表3</td>
+                      <td>中和機房</td>
+                      <td>5F</td>
+                      <td>2023-05-31 14:50:30</td>
+                      <td>test 4</td>
+                    </tr>
+                  </table>
+                </div>
+              </td>
+            </tr>
+            {/* <tbody></tbody> */}
           </table>
         </div>
       </div>
