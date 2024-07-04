@@ -55,16 +55,12 @@ const AreaDoubleLineChart = (props) => {
   ];
 
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      minHeight={chartType ? `100px` : `200px`}
-    >
+    <ResponsiveContainer width="100%" height="100%">
       <AreaChart
         width={730}
         height={250}
         data={data}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+        margin={{ top: 10, right: 0, left: -25, bottom: 0 }}
       >
         <defs>
           <linearGradient

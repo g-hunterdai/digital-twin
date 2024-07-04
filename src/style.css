@@ -1,6 +1,9 @@
+html,
 body {
+  height: 100%;
   margin: 0;
   background: #252424;
+  padding: 0;
 }
 p,
 span,
@@ -12,7 +15,7 @@ hr {
 }
 
 #canvas2d {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   overflow: auto;
 }
@@ -20,7 +23,7 @@ hr {
 #header {
   top: 16px;
   right: 20px;
-  width: calc(100% - 432px);
+  width: calc(83% - 96px);
   height: 32px;
   padding: 4px 16px;
   display: flex;
@@ -42,11 +45,12 @@ hr {
   align-items: center;
   gap: 16px;
 }
+
 #logo {
-  width: 300px;
+  width: 15.31vw;
   top: 0;
   left: 20px;
-  height: 98px;
+  height: 8%;
 }
 
 #logo .btn-area {
@@ -57,7 +61,7 @@ hr {
   color: var(---, #ccc);
   text-align: center;
   /* font-family: "Univia Pro"; */
-  font-size: 48px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -92,26 +96,28 @@ hr {
 }
 
 #left-panel {
-  width: 300px;
+  width: 15.31vw;
   left: 20px;
-  top: 138px;
-  height: 654px;
+  top: 11%;
+  height: clamp(300px, 65.5%, 680px);
   gap: 16px;
 }
 
 #right-panel {
-  width: 499px;
-  top: 80px;
+  width: 24vw;
+  top: 64px;
   right: 20px;
   z-index: 99;
-  height: 979px;
+  height: calc(100% - 70px);
 }
 
 #bottom-table-panel {
-  width: calc(100% - 607px);
+  width: calc(76vw - 104px);
   height: 227px;
+  height: clamp(10px, 20%, 135px);
   left: 20px;
-  top: 832px;
+  bottom: 0vh;
+  overflow: hidden;
 }
 
 #right-panel .tab-area {
@@ -144,6 +150,7 @@ hr {
 #right-panel .col-box {
   display: flex;
   gap: 18px;
+  /* height: clamp(30px, 16%, 180px); */
 }
 
 #right-panel .cell-box {
@@ -162,18 +169,18 @@ hr {
 }
 
 #right-panel .cell-box .cell-item {
-  flex: 0 0 calc(25% - 26px);
-  padding: 10px 12px;
+  flex: 0 0 calc(25% - 14px);
+  padding: 2px 6px;
   border: 1px solid #fbfbf9;
   text-align: left;
 }
 
 #right-panel .cell-box .cell-item span {
   color: var(---, #ccc);
-  font-size: 14px;
+  font-size: 0.6rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 0.6rem;
 }
 
 #right-panel .cell-box .cell-item .data-area {
@@ -186,17 +193,16 @@ hr {
   flex: 1;
   border: 1px solid rgba(251, 251, 249, 0.4);
   flex-direction: column;
-  padding: 8px;
+  padding: 4px;
 }
 
 .progress-item hr {
-  margin: 0 0 8px 0;
+  margin: 0 0 4px 0;
 }
 
 .progress-item span {
   color: var(---, #ccc);
-  font-family: "Univia Pro";
-  font-size: 14px;
+  font-size: 0.6rem;
   font-style: normal;
   font-weight: 500;
   line-height: 24px;
@@ -207,7 +213,7 @@ hr {
 .panel-box {
   background-color: #07111d;
   /* height: 686px; */
-  padding: 16px;
+  padding: 8px;
   color: #cccccc;
   display: flex;
   /* gap: 16px; */
@@ -219,7 +225,7 @@ hr {
 .chart-box {
   border: 1px #666666 solid;
   height: calc(100% - 50px);
-  padding: 12px 16px;
+  padding: 6px 8px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -239,10 +245,14 @@ hr {
 #right-panel .chart-box {
   display: flex;
   flex-direction: row;
+  height: 25%;
+  max-height: calc(50% - 185px);
+  /* height: clamp(50px, 25%, calc(50% - 135px)); */
 }
 
 #right-panel .chart-box .data-area {
   flex-direction: column;
+  gap: 8px;
 }
 
 #left-panel .unit-box {
@@ -251,7 +261,7 @@ hr {
 
 #right-panel .col-box,
 #right-panel .cell-box {
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 #right-panel .title.row {
@@ -273,7 +283,7 @@ hr {
 .progress {
   width: 100%;
   display: flex;
-  margin: 12px 0;
+  margin: 4px 0;
 }
 .progress div {
   height: 4px;
@@ -297,33 +307,46 @@ hr {
   padding: 0 12px;
 }
 
+.chart-box .vertical-box .data-area .title {
+  line-height: 0.5rem; /* 142.857% */
+  font-size: 0.6rem;
+}
+
+.chart-box .vertical-box .data-area .value {
+  line-height: 1rem; /* 142.857% */
+  font-size: 1.2rem;
+}
+
 .col-box .progress-item .data-area .title,
-.chart-box .vertical-box .data-area .title,
 .chart-box .data-area .data-box .title {
   color: #ccc;
 
   /* 中文/Detail/regular */
   font-family: "Noto Sans TC";
-  font-size: 14px;
+  font-size: 0.6rem;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 142.857% */
   text-align: left;
 }
 
-.col-box .progress-item .data-area .value,
-.chart-box .vertical-box .data-area .value,
+.col-box .progress-item .data-area .value span.unit,
+.col-box .progress-item .data-area .value {
+  font-size: 0.7rem;
+  color: var#fff;
+  text-align: right;
+  line-height: normal;
+}
 .chart-box .data-area .data-box .value {
   color: var#fff;
   text-align: right;
   /* font-family: "Univia Pro"; */
-  font-size: 24px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 }
 
-.col-box .progress-item .data-area .value span.unit,
 .chart-box .vertical-box .data-area .value span.unit,
 .chart-box .data-area .data-box .value span.unit {
   color: #ccc;
@@ -343,10 +366,12 @@ hr {
   color: #4dbefe;
   display: flex;
   justify-content: flex-end;
+  font-size: 0.8rem;
 }
 
 .col-box .progress-item .data-area .value.blue .unit {
   color: #4dbefe;
+  font-size: 0.6rem;
 }
 
 .row {
@@ -387,6 +412,11 @@ hr {
 #bottom-table-panel .label-box .row:nth-child(4) .label {
   background-color: #79e8a4;
 }
+
+#bottom-table-panel .row.jcsb {
+  font-size: 0.8rem;
+}
+
 .row.jcsb {
   justify-content: space-between;
 }
@@ -401,10 +431,16 @@ hr {
   width: 100%;
 }
 
+#bottom-table-panel .row.ais .table-box {
+  /* height: clamp(10px, 80%, 250px); */
+  height: 150px;
+  /* overflow-y: scroll; */
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 14px;
+  font-size: 0.8rem;
 }
 
 thead {
@@ -414,7 +450,7 @@ thead {
 
 th,
 td {
-  padding: 10px;
+  padding: 2px;
   text-align: left;
 }
 
@@ -440,4 +476,13 @@ td {
 
 .warning {
   background-color: #2ecc71;
+}
+
+#right-panel .cell-box .cell-item .data-area .icon img {
+  height: 12px;
+  width: 12px;
+}
+
+#right-panel .cell-box .cell-item .data-area .value {
+  font-size: 0.8rem;
 }
