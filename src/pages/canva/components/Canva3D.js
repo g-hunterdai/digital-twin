@@ -53,7 +53,9 @@ const Canva3D = (props) => {
     controls.autoRotate = true;
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load("textures/map.png");
+    const texture = textureLoader.load(
+      `${process.env.PUBLIC_URL}/textures/map.png`
+    );
 
     const planeGeometry = new THREE.PlaneGeometry(1800, 1800);
     const planeMaterial = new THREE.MeshStandardMaterial({
@@ -70,7 +72,7 @@ const Canva3D = (props) => {
 
     const gltfLoader = new GLTFLoader();
     gltfLoader.load(
-      process.env.PUBLIC_URL + "/gltf/101_gltf/1586297.gltf",
+      `${process.env.PUBLIC_URL}/gltf/101_gltf/1586297.gltf`,
       (gltf) => {
         const model = gltf.scene;
 
