@@ -23,12 +23,10 @@ const Canva3D = (props) => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      15000
+      50000
     );
     // Adjust the camera position to be higher
-    camera.position.set(500, 1400, 500); // Increase the y-coordinate for a higher view
-    // Adjust the camera lookAt to look at a higher point
-    camera.lookAt(0, 1000, 0); // Look at a point higher along the y-axis
+    camera.position.set(0, 600, 1200); // Increase the y-coordinate for a higher view
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -51,15 +49,16 @@ const Canva3D = (props) => {
     controls.enableZoom = false;
     controls.dampingFactor = 0.01;
     controls.autoRotate = true;
-    controls.minPolarAngle = Math.PI / 6; // 90 degrees
-    controls.maxPolarAngle = Math.PI / 6; // 90 degrees
+    controls.minPolarAngle = Math.PI / 3.5;
+    controls.maxPolarAngle = Math.PI / 3.5;
+    controls.target.set(0, 250, 0); // 設定相機聚焦點
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(
       `${process.env.PUBLIC_URL}/textures/map.png`
     );
 
-    const planeGeometry = new THREE.PlaneGeometry(10000, 10000);
+    const planeGeometry = new THREE.PlaneGeometry(30000, 30000);
     const planeMaterial = new THREE.MeshStandardMaterial({
       map: texture,
       color: 0x888888,
@@ -79,10 +78,10 @@ const Canva3D = (props) => {
         const model = gltf.scene;
 
         // 縮小模型
-        const scale = 2; // 調整這個值來控制縮小比例
+        const scale = 1.8; // 調整這個值來控制縮小比例
         model.scale.set(scale, scale, scale);
 
-        // model.position.y = -20;
+        // model.position.set(-50, 0, 200);
 
         createOrUpdateLabels(pue, kwh); // Initial creation of labels
 
@@ -139,44 +138,44 @@ const Canva3D = (props) => {
       }
     });
 
-    // Create new label content
     const labelDiv = document.createElement("div");
     labelDiv.innerHTML = `
-      <div>
-        <div style="display: flex; align-item: center; margin: 0px 0px 8px 0px;">
-          <img src="${
-            process.env.PUBLIC_URL
-          }/layout/UnionOrange.svg" style="margin: 0px 5px; padding: 0px" />
-          <span style="font-size: 32px; font-weight: 350;">
-            Taipei 101
-          </span>
+  <div>
+    <div style="display: flex; align-items: center; margin: 0px 0px 4px 0px;">
+      <img src="${
+        process.env.PUBLIC_URL
+      }/layout/UnionOrange.svg" style="width: 20px; height: 20px; margin: 0px 4px; padding: 0px" />
+      <span style="font-size: 22px; font-weight: 350;">
+        Taipei 101
+      </span>
+    </div>
+    <div id="border-div" style="display: flex; justify-content: center; color: #ffffff; border-width: 0px 4px; border-color: #fe8c23; border-style: solid; position: relative;">
+      <div style="margin: 0px 8px;">
+        <div style="margin: 4px 0px;">
+          <div style="color: #cccccc; font-size: 12px; font-weight: 400">PUE</div>
+          <div style="color: #ffffff; font-size: 18px; font-weight: 400">${pue.toFixed(
+            3
+          )}</div>
         </div>
-        <div style="display: flex; justify-content: center; color: #ffffff; border-width: 1px 4px; border-color: #fe8c23; border-style: solid;">
-          <div style="margin: 0px 8px;">
-            <div style="margin: 8px 0px;">
-              <div style="color: #cccccc; font-size: 16px; font-weight: 400">PUE</div>
-              <div style="color: #ffffff; font-size: 28px; font-weight: 400">${pue.toFixed(
-                3
-              )}</div>
-            </div>
-            <div style="margin: 8px 0px;">
-              <div style="color: #cccccc; font-size: 16px; font-weight: 400">KWH</div>
-              <div style="color: #ffffff; font-size: 28px; font-weight: 400">${kwh}</div>
-            </div>
-          </div>
-          <div style="margin: 0px 8px;">
-            <div style="margin: 8px 0px;">
-              <div style="color: #cccccc; font-size: 16px; font-weight: 400">IN Mbps</div>
-              <div style="color: #ffffff; font-size: 28px; font-weight: 400">381</div>
-            </div>
-            <div style="margin: 8px 0px;">
-              <div style="color: #cccccc; font-size: 16px; font-weight: 400">OUT Mbps</div>
-              <div style="color: #ffffff; font-size: 28px; font-weight: 400">498</div>
-            </div>
-          </div>
+        <div style="margin: 4px 0px;">
+          <div style="color: #cccccc; font-size: 12px; font-weight: 400">KWH</div>
+          <div style="color: #ffffff; font-size: 18px; font-weight: 400">${kwh}</div>
         </div>
       </div>
-    `;
+      <div style="margin: 0px 8px;">
+        <div style="margin: 4px 0px;">
+          <div style="color: #cccccc; font-size: 12px; font-weight: 400">IN Mbps</div>
+          <div style="color: #ffffff; font-size: 18px; font-weight: 400">381</div>
+        </div>
+        <div style="margin: 4px 0px;">
+          <div style="color: #cccccc; font-size: 12px; font-weight: 400">OUT Mbps</div>
+          <div style="color: #ffffff; font-size: 18px; font-weight: 400">498</div>
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+
     Object.assign(labelDiv.style, {
       fontFamily: "Univia Pro",
       color: "#FE8C23",
@@ -184,10 +183,99 @@ const Canva3D = (props) => {
       padding: "4px",
       textAlign: "left",
       pointerEvents: "none",
+      position: "relative",
     });
 
+    const borderDiv = labelDiv.querySelector("#border-div");
+
+    // Create and style the before pseudo-element for the left segment of the top border
+    const beforeTopElement = document.createElement("div");
+    Object.assign(beforeTopElement.style, {
+      content: '""',
+      position: "absolute",
+      top: "0",
+      left: "0",
+      height: "0",
+      width: "calc(20% - 20px)", // Adjust this value to control the middle segment's length
+      borderTop: "4px solid #fe8c23", // Thicker left segment
+      zIndex: "1",
+    });
+
+    // Create and style the middle pseudo-element for the top border
+    const middleTopElement = document.createElement("div");
+    Object.assign(middleTopElement.style, {
+      content: '""',
+      position: "absolute",
+      top: "2px",
+      left: "calc(20% - 20px)",
+      height: "0",
+      width: "calc(80% + 20px)", // Adjust this value to control the middle segment's length
+      borderTop: "1px solid #fe8c23", // Thinner middle segment
+      zIndex: "1",
+    });
+
+    // Create and style the after pseudo-element for the right segment of the top border
+    const afterTopElement = document.createElement("div");
+    Object.assign(afterTopElement.style, {
+      content: '""',
+      position: "absolute",
+      top: "0",
+      right: "0",
+      height: "0",
+      width: "calc(20% - 20px)", // Adjust this value to control the middle segment's length
+      borderTop: "4px solid #fe8c23", // Thicker right segment
+      zIndex: "1",
+    });
+
+    // Create and style the before pseudo-element for the left segment of the bottom border
+    const beforeBottomElement = document.createElement("div");
+    Object.assign(beforeBottomElement.style, {
+      content: '""',
+      position: "absolute",
+      bottom: "0",
+      left: "0",
+      height: "0",
+      width: "calc(20% - 20px)", // Adjust this value to control the middle segment's length
+      borderBottom: "4px solid #fe8c23", // Thicker left segment
+      zIndex: "1",
+    });
+
+    // Create and style the middle pseudo-element for the bottom border
+    const middleBottomElement = document.createElement("div");
+    Object.assign(middleBottomElement.style, {
+      content: '""',
+      position: "absolute",
+      bottom: "2px",
+      left: "calc(20% - 20px)",
+      height: "0",
+      width: "calc(80% + 20px)", // Adjust this value to control the middle segment's length
+      borderBottom: "1px solid #fe8c23", // Thinner middle segment
+      zIndex: "1",
+    });
+
+    // Create and style the after pseudo-element for the right segment of the bottom border
+    const afterBottomElement = document.createElement("div");
+    Object.assign(afterBottomElement.style, {
+      content: '""',
+      position: "absolute",
+      bottom: "0",
+      right: "0",
+      height: "0",
+      width: "calc(20% - 20px)", // Adjust this value to control the middle segment's length
+      borderBottom: "4px solid #fe8c23", // Thicker right segment
+      zIndex: "1",
+    });
+
+    // Append the pseudo-elements to the borderDiv
+    borderDiv.appendChild(beforeTopElement);
+    borderDiv.appendChild(middleTopElement);
+    borderDiv.appendChild(afterTopElement);
+    borderDiv.appendChild(beforeBottomElement);
+    borderDiv.appendChild(middleBottomElement);
+    borderDiv.appendChild(afterBottomElement);
+
     const modelLabel = new CSS2DObject(labelDiv);
-    modelLabel.position.set(-500, 500, 0);
+    modelLabel.position.set(-400, 500, 0);
     scene.current.add(modelLabel);
   };
 
