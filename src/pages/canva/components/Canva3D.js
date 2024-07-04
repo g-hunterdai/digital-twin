@@ -6,7 +6,6 @@ import {
   CSS2DRenderer,
   CSS2DObject,
 } from "three/examples/jsm/renderers/CSS2DRenderer";
-import AnimatedNumbers from "react-animated-numbers";
 
 const Canva3D = (props) => {
   const { pue, kwh } = props;
@@ -24,12 +23,12 @@ const Canva3D = (props) => {
       75,
       window.innerWidth / window.innerHeight,
       0.1,
-      5000
+      15000
     );
-    camera.position.z = 250;
-    camera.position.y = 500;
-    camera.position.x = 250;
-    camera.lookAt(0, 0, 0);
+    // Adjust the camera position to be higher
+    camera.position.set(500, 1400, 500); // Increase the y-coordinate for a higher view
+    // Adjust the camera lookAt to look at a higher point
+    camera.lookAt(0, 1000, 0); // Look at a point higher along the y-axis
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -49,15 +48,18 @@ const Canva3D = (props) => {
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
+    controls.enableZoom = false;
     controls.dampingFactor = 0.01;
     controls.autoRotate = true;
+    controls.minPolarAngle = Math.PI / 6; // 90 degrees
+    controls.maxPolarAngle = Math.PI / 6; // 90 degrees
 
     const textureLoader = new THREE.TextureLoader();
     const texture = textureLoader.load(
       `${process.env.PUBLIC_URL}/textures/map.png`
     );
 
-    const planeGeometry = new THREE.PlaneGeometry(1800, 1800);
+    const planeGeometry = new THREE.PlaneGeometry(10000, 10000);
     const planeMaterial = new THREE.MeshStandardMaterial({
       map: texture,
       color: 0x888888,
@@ -75,6 +77,12 @@ const Canva3D = (props) => {
       `${process.env.PUBLIC_URL}/gltf/101_gltf/1586297.gltf`,
       (gltf) => {
         const model = gltf.scene;
+
+        // 縮小模型
+        const scale = 2; // 調整這個值來控制縮小比例
+        model.scale.set(scale, scale, scale);
+
+        // model.position.y = -20;
 
         createOrUpdateLabels(pue, kwh); // Initial creation of labels
 
@@ -135,7 +143,14 @@ const Canva3D = (props) => {
     const labelDiv = document.createElement("div");
     labelDiv.innerHTML = `
       <div>
-        <h3 style="font-size: 32px; font-weight: 350; margin: 0px 0px 8px 0px">Taipei 101</h3>
+        <div style="display: flex; align-item: center; margin: 0px 0px 8px 0px;">
+          <img src="${
+            process.env.PUBLIC_URL
+          }/layout/UnionOrange.svg" style="margin: 0px 5px; padding: 0px" />
+          <span style="font-size: 32px; font-weight: 350;">
+            Taipei 101
+          </span>
+        </div>
         <div style="display: flex; justify-content: center; color: #ffffff; border-width: 1px 4px; border-color: #fe8c23; border-style: solid;">
           <div style="margin: 0px 8px;">
             <div style="margin: 8px 0px;">
@@ -172,7 +187,7 @@ const Canva3D = (props) => {
     });
 
     const modelLabel = new CSS2DObject(labelDiv);
-    modelLabel.position.set(-200, 200, 0);
+    modelLabel.position.set(-500, 500, 0);
     scene.current.add(modelLabel);
   };
 
