@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/digital-twin/static/css/main.ddc95353.css",
-    "main.js": "/digital-twin/static/js/main.b4d20d3d.js",
+    "main.css": "/digital-twin/static/css/main.5f2dc21c.css",
+    "main.js": "/digital-twin/static/js/main.d9fbe17b.js",
     "index.html": "/digital-twin/index.html",
-    "main.ddc95353.css.map": "/digital-twin/static/css/main.ddc95353.css.map",
-    "main.b4d20d3d.js.map": "/digital-twin/static/js/main.b4d20d3d.js.map"
+    "main.5f2dc21c.css.map": "/digital-twin/static/css/main.5f2dc21c.css.map",
+    "main.d9fbe17b.js.map": "/digital-twin/static/js/main.d9fbe17b.js.map"
   },
   "entrypoints": [
-    "static/css/main.ddc95353.css",
-    "static/js/main.b4d20d3d.js"
+    "static/css/main.5f2dc21c.css",
+    "static/js/main.d9fbe17b.js"
   ]
 }
