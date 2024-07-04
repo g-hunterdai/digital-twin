@@ -22,7 +22,7 @@ const Canva = () => {
   }, []);
   return (
     <div className="canvaContainer">
-      <Canva3D />
+      <Canva3D pue={pue} kwh={kwh} />
       <Canva2D pue={pue} kwh={kwh} />
     </div>
   );
